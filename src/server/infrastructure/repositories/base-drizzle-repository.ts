@@ -43,7 +43,7 @@ export abstract class BaseDrizzleRepository {
    * Get where clause for record by ID
    */
   protected getByIdWhere(table: Record<string, unknown>, id: string) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return eq((table as any).id, id);
   }
 }

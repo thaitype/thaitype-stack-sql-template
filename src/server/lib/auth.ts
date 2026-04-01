@@ -1,11 +1,11 @@
-import { betterAuth } from 'better-auth';
+import { type Auth, betterAuth, type BetterAuthOptions } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { env } from '~/env';
 import { getDatabase, initializeDatabaseConfig } from './db';
 import { createAppConfig } from '../config/types';
 
 // Lazy-initialized auth instance
-let authInstance: ReturnType<typeof betterAuth> | null = null;
+let authInstance: Auth<BetterAuthOptions> | null = null;
 
 async function createAuthInstance() {
   // Initialize database configuration first
@@ -16,7 +16,8 @@ async function createAuthInstance() {
   const db = await getDatabase();
 
   return betterAuth({
-    database: drizzleAdapter(db, {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    database: drizzleAdapter(db as any, {
       provider: 'pg', // PostgreSQL
     }),
     emailAndPassword: {
@@ -62,7 +63,8 @@ async function createAuthInstance() {
         enabled: true
       }
     }
-  });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  }) as any as Auth<BetterAuthOptions>;
 }
 
 /**
