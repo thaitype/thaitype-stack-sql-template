@@ -119,7 +119,7 @@ export const RepoTodoUserQuerySchema = z.object({
   includeCompleted: z.boolean().optional(),
   limit: z.number().min(1).max(100).optional(),
   skip: z.number().min(0).optional(),
-  sort: z.record(z.enum(['asc', 'desc'])).optional(),
+  sort: z.record(z.string(), z.enum(['asc', 'desc'])).optional(),
 });
 
 /**

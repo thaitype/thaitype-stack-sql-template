@@ -13,9 +13,9 @@ export default function NotFound() {
           </Text>
         </div>
 
-        <Button component={Link} href="/" size="lg">
-          Go Home
-        </Button>
+        <Link href="/" style={{ textDecoration: 'none' }}>
+          <Button size="lg">Go Home</Button>
+        </Link>
       </Stack>
     </Container>
   );
